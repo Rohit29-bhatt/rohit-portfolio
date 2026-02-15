@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rohit A Bhat | SFMC Portfolio</title>
+  <style>
+    :root{
+      --primary:#6366f1;
+      --secondary:#22d3ee;
+      --accent:#a855f7;
+      --bg:#f8fafc;
+      --text:#020617;
+      --card:#ffffff;
+      --muted:#475569;
+      --border:#e5e7eb;
+      --link:#4f46e5;
+      --shadow:0 30px 60px rgba(0,0,0,.08);
+    }
+    [data-theme="dark"]{
+      --bg:#020617;
+      --text:#f9fafb;
+      --card:#0f172a;
+      --muted:#c7d2fe;
+      --border:#1e293b;
+      --link:#93c5fd;
+      --shadow:0 30px 60px rgba(0,0,0,.6);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Inter','Segoe UI',Arial,sans-serif;
+      background:
+        radial-gradient(900px 500px at 90% -10%, rgba(99,102,241,.18), transparent),
+        radial-gradient(700px 350px at 0% 30%, rgba(34,211,238,.18), transparent),
+        var(--bg);
+      color:var(--text);
+      transition:background .4s,color .4s;
+      scroll-behavior:smooth;
+    }
+    header{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;position:relative}
+    .hero{max-width:1000px;text-align:center;animation:fadeUp 1.2s ease both}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+    .badge{display:inline-block;padding:8px 18px;border-radius:999px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-size:13px}
+    header h1{margin:28px 0 18px;font-size:58px;line-height:1.05;background:linear-gradient(135deg,var(--primary),var(--secondary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+    [data-theme="dark"] header h1{text-shadow:0 0 0 var(--text)}
+    header p{font-size:21px;color:var(--muted);max-width:780px;margin:0 auto 36px}
+    .hero-actions{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+    .btn{padding:14px 26px;border-radius:16px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;transition:.25s}
+    .btn.primary{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border:none}
+    .btn:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(0,0,0,.25)}
+    .toggle{position:absolute;top:18px;right:18px;padding:10px 16px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:70px}
+    .stat{background:var(--card);border:1px solid var(--border);border-radius:26px;padding:30px;text-align:center;box-shadow:var(--shadow)}
+    .stat strong{font-size:36px}
+    .stat span{color:var(--muted)}
+    @media(max-width:900px){.stats{grid-template-columns:1fr 1fr}}
+    section{max-width:1200px;margin:130px auto;padding:0 20px}
+    h2{font-size:38px;margin-bottom:48px;position:relative}
+    h2::after{content:"";position:absolute;left:0;bottom:-18px;width:100px;height:6px;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:6px}
+    .grid{display:grid;gap:44px}
+    .grid-2{grid-template-columns:2fr 1fr}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:34px;padding:38px;box-shadow:var(--shadow);transition:.3s}
+
+/* ===== CERTIFICATION BADGE HOVER EFFECT ===== */
+#certifications img{
+  transition: transform .6s ease, box-shadow .6s ease, filter .6s ease;
+  backface-visibility: hidden;
+}
+
+/* ===== BADGE FLIP CONTAINER ===== */
+.badge-flip{
+  perspective: 1000px;
+}
+.badge-inner{
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform .7s ease;
+}
+.badge-flip:hover .badge-inner{
+  transform: rotateY(180deg);
+}
+.badge-front, .badge-back{
+  backface-visibility: hidden;
+  position: absolute;
+  inset: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.badge-back{
+  transform: rotateY(180deg);
+  font-weight:600;
+  text-align:center;
+  padding:20px;
+}
+
+/* ===== CERTIFIED RIBBON ===== */
+.cert-ribbon{
+  position:absolute;
+  top:14px;
+  right:-36px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;
+  padding:6px 40px;
+  transform:rotate(45deg);
+  font-size:12px;
+  font-weight:700;
+}
+
+#certifications .card{
+  position:relative;
+}
+
+#certifications .card:hover{
+  transform: translateY(-12px);
+}
+
+#certifications .card a{
+  color:var(--link);
+  text-decoration:none;
+  font-weight:600;
+}
+#certifications .card:hover img{
+  transform: translateY(-6px) scale(1.08);
+  filter: drop-shadow(0 18px 28px rgba(99,102,241,.45));
+}
+#certifications .card:hover{
+  transform: translateY(-10px);
+}
+    .card:hover{transform:translateY(-8px)}
+    ul{line-height:2;padding-left:18px;margin:0}
+    .skills{display:flex;flex-wrap:wrap;gap:16px}
+    .pill{padding:12px 22px;border-radius:999px;border:1px solid var(--border);background:var(--card);transition:.25s}
+    .pill:hover{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff}
+    details{background:var(--card);border:1px solid var(--border);border-radius:30px;padding:28px 32px;box-shadow:var(--shadow)}
+    details+details{margin-top:30px}
+    summary{cursor:pointer;font-size:22px;font-weight:600;list-style:none}
+    footer{text-align:center;padding:90px 20px;color:var(--muted)}
+    .footer-links a{display:inline-block;margin:10px 14px;font-weight:600;color:var(--link);text-decoration:none}
+  </style>
+</head>
+<body data-theme="light">
+
+<header id="home">
+  <button id="themeToggle" class="toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+  <div class="hero">
+    <span class="badge">Salesforce Marketing Cloud Portfolio</span>
+    <h1>Rohit A Bhat</h1>
+    <p>Software Engineer specializing in Salesforce Marketing Cloud, delivering automation‑heavy, compliant, and scalable solutions for global pharmaceutical clients.</p>
+    <div class="hero-actions">
+      <button class="btn primary" onclick="document.getElementById('clients').scrollIntoView()">Client Work</button>
+      <button class="btn" onclick="document.getElementById('projects').scrollIntoView()">Personal Projects</button>
+      <button class="btn" onclick="document.getElementById('contact').scrollIntoView()">Contact</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>3+</strong><span>Years SFMC</span></div>
+      <div class="stat"><strong>3</strong><span>Active Clients</span></div>
+      <div class="stat"><strong>25+</strong><span>Automations</span></div>
+      <div class="stat"><strong>100+</strong><span>Campaigns Delivered</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="grid grid-2">
+    <div class="card">
+      <p>Software Engineer specializing as a Salesforce Marketing Cloud (SFMC) Developer
+with 3+ years of experience. Skilled in HTML, css, JavaScript, Python, SQL, and
+Java. Experienced in developing automated solutions, improving email marketing
+workflows, and optimizing data handling within SFMC. Passionate about leveraging
+technology for efficient and scalable solutions. </p>
+    </div>
+    <div class="card">
+      <strong>Current Client Engagements</strong>
+      <ul>
+        <li>Chiesi Pharmaceuticals</li>
+        <li>Ipsen</li>
+        <li>Bayer Radiology</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Core Skills & Tools</h2>
+  <div class="skills">
+    <span class="pill">Salesforce Marketing Cloud</span>
+    <span class="pill">Email Studio</span>
+    <span class="pill">Journey Builder</span>
+    <span class="pill">Automation Studio</span>
+    <span class="pill">AMPscript</span>
+    <span class="pill">SQL</span>
+    <span class="pill">HTML & CSS</span>
+    <span class="pill">Einstein Engagements</span>
+    <span class="pill">FTP & API Integrations</span>
+    <span class="pill">CloudPages</span>
+    <span class="pill">SFMC Administration</span>
+    <span class="pill">Reporting & Intelligence</span>
+    <span class="pill">YBR / QBR Documentation</span>
+    <span class="pill">OCE → SFMC Migration</span>
+    <span class="pill">Jira & Project Tracking</span>
+  </div>
+</section>
+
+<section id="clients">
+  <h2>Client Work</h2>
+  <details open>
+    <summary>Chiesi — Automations, Migration & Reporting</summary>
+    <ul>
+      <li>Designed and maintained daily and weekly registration automations.</li>
+      <li>Built automated CRM and Intelligence reports for business stakeholders.</li>
+      <li>Owned YBR and QBR documentation including metrics and insights.</li>
+      <li>Supported migration activities from IQVIA OCE platform to SFMC.</li>
+    </ul>
+  </details>
+  <details>
+    <summary>Ipsen — Integrations, AI & Platform Admin</summary>
+    <ul>
+      <li>Implemented FTP‑based data transfers using FileZilla.</li>
+      <li>Developed and monitored API integrations with external systems.</li>
+      <li>Configured Einstein Engagements for optimization.</li>
+      <li>Performed A/B testing for subject lines and content.</li>
+      <li>Handled SFMC user roles, access control, and CloudPages.</li>
+    </ul>
+  </details>
+  <details>
+    <summary>Bayer Radiology — Campaign Execution & Journeys</summary>
+    <ul>
+      <li>Executed email campaigns using Email Studio.</li>
+      <li>Designed Data Extensions and Journey Builder workflows.</li>
+      <li>Created campaign shells and delivery reports.</li>
+      <li>Supported A/B testing and post‑campaign analysis.</li>
+    </ul>
+  </details>
+</section>
+
+<section id="projects">
+  <h2>Personal & Academic Projects</h2>
+  <div class="grid grid-3">
+    <div class="card">
+      <h3>Sentence Comparator Tool</h3>
+      <p>Developed a Python and HTML‑based tool to compare PDF and email content, identifying text, spacing, and formatting mismatches to improve QA efficiency.</p>
+      <ul><li>Python, HTML, CSS</li><li>Used in real QA workflows</li></ul>
+    </div>
+    <div class="card">
+      <h3>Gesture‑Controlled Wireless Wheelchair</h3>
+      <p>Engineered a gesture‑based wheelchair system using sensors and wireless communication to assist physically challenged users.</p>
+      <ul><li>Embedded Systems</li><li>Research paper presented at ICDAM‑2022</li></ul>
+    </div>
+    <div class="card">
+      <h3>AI Weather Forecasting</h3>
+      <p>Built a Python‑based weather forecasting model during AI internship training, applying basic machine‑learning concepts.</p>
+      <ul><li>Python</li><li>AI / ML fundamentals</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="internship">
+  <h2>Internship & Training</h2>
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>Intern – Artificial Intelligence (Python)</h3>
+      <p>IETE | Sept 2021 – Oct 2021</p>
+      <ul>
+        <li>Learned core AI concepts using Python.</li>
+        <li>Developed a Weather Forecasting project as part of hands‑on training.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Trainee – SQL & Java</h3>
+      <p>Aptech | Jun 2021 – Aug 2021</p>
+      <ul>
+        <li>Hands‑on experience with SQL queries and database concepts.</li>
+        <li>Learned Java programming fundamentals and logic building.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <h2>Professional Experience</h2>
+  <div class="card">
+    <h3>Software Engineer – Salesforce Marketing Cloud</h3>
+    <p>Indegene Pvt Ltd | Aug 2022 – Present</p>
+    <ul>
+      <li>Hands-on experience with SFMC: Email Studio, Journey Builder, Data Extensions, Sender Profiles, and Campaigns.</li>
+      <li>Created dynamic content with AMPscript and SQL for business personalization needs.</li>
+      <li>Worked extensively in Automation Studio to streamline campaign processes.</li>
+      <li>Created and executed test cases to ensure expected email outcomes.</li>
+      <li>Utilized Email On Acid for email previews across clients.</li>
+      <li>Used Data Views to track send, open, and click metrics for campaigns.</li>
+      <li>Experienced on Giving Trainings to New Joiners</li>
+      <li>Worked on Migration Task Using Package Manager</li>
+    </ul>
+  </div>
+</section>
+
+<section id="certifications">
+  <h2>Certifications & Learning</h2>
+
+  <details open>
+    <summary>Salesforce Trailhead</summary>
+    <div class="card" style="margin-top:24px">
+      <ul>
+        <li>Active Salesforce Trailhead learner with focus on Marketing Cloud.</li>
+        <li>Hands-on learning across Email Studio, Journey Builder, and Automation Studio.</li>
+        <li><strong>Trailhead Profile:</strong> <a href="https://www.salesforce.com/trailblazer/inhu2p2k7szgldbq07" target="_blank">View Profile</a></li>
+        <li>Certified Salesforce credentials achieved:</li>
+      </ul>
+      <div class="grid grid-3" style="margin-top:20px">
+        <div class="card" style="text-align:center">
+          <img src="C:\Users\rohit.bhat\OneDrive - Indegene Limited\Desktop\portfolio\sf-cert-email-specialist.png" alt="Marketing Cloud Email Specialist" style="max-width:120px" />
+          <p>Marketing Cloud Email Specialist</p>
+        </div>
+        <div class="card" style="text-align:center">
+          <img src="C:\Users\rohit.bhat\OneDrive - Indegene Limited\Desktop\portfolio\sf-cert-AI-Associate-rtd.png" alt="Salesforce AI Associate" style="max-width:120px" />
+          <p>Salesforce AI Associate</p>
+        </div>
+        <div class="card" style="text-align:center">
+          <img src="C:\Users\rohit.bhat\OneDrive - Indegene Limited\Desktop\portfolio\sf-cert-marketing-cloud-agent-specialist.png" alt="Agentforce Specialist" style="max-width:120px" />
+          <p>Agentforce Specialist</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Continuous Learning</summary>
+    <div class="card" style="margin-top:24px">
+      <ul>
+        <li>Ongoing learning aligned with project and platform needs.</li>
+        <li>Focus on automation, reporting, governance, and AI concepts.</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<section id="achievements">
+  <h2>Achievements & Recognition</h2>
+  <div class="card">
+    <ul>
+      <li>Individual Innovation Award.</li>
+      <li>Highest Performance Rating for two consecutive years.</li>
+      <li>Client and team appreciations: Hitting the Mark, Going the Extra Mile.</li>
+      <li>Participant in Generative AI Hackathon.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="card">
+    <p>Let’s connect 👋</p>
+    <div class="footer-links">
+      <a href="mailto:bhatrohit001@gmail.com">Email</a>
+      <a href="www.linkedin.com/in/rohit-a-bhat-6561471a3" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+  
+</section>
+
+<footer>
+  © 2026 Rohit A Bhat · Interactive SFMC Portfolio
+  <div class="footer-links">
+    <a href="#home">Back to Top ↑</a>
+  </div>
+</footer>
+
+<script>
+  function toggleTheme(){
+    const body=document.body;
+    const btn=document.getElementById('themeToggle');
+    if(body.dataset.theme==='dark'){
+      body.dataset.theme='light';
+      btn.innerHTML='🌙 Dark Mode';
+    } else {
+      body.dataset.theme='dark';
+      btn.innerHTML='☀️ Light Mode';
+    }
+  }
+</script>
+
+</body>
+</html>
